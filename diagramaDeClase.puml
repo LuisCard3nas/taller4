@@ -1,0 +1,82 @@
+@startuml
+skin rose
+package pokedex{
+package models{
+abstract pokemon{
+- id:int
+- nombre: String
+- etapa: String
+- tipo1: String
+- tipo2: String
++get´s()
++set´s()
+}
+class pokemonBasico{
+- siguienteEvolucion: String
+- evolucionPrevia: String
++get´s()
++set´s()
+}
+class pokemonPrimeraEvolucion{
+- siguienteEvolucion: String
+- evolucionPrevia: String
++get´s()
++set´s()
+}
+class pokemonSegundaEvolucion{
+- siguienteEvolucion: String
+- evolucionPrevia: String
++get´s()
++set´s()
+}
+}
+package services{
+class NodoDoble{
++NodoDoble()
++get´s()
++set´s()
+}
+class listaNexoDoble{
++listaNexoDoble()
++agregar(pokemon:pokemon): boolean
++buscarPokemonPorNombre(pokemon): void
++buscarPokemonPorID(pokemon):void
+}
+interface elemento{
++esIgual(Elemento:elemento):boolean
++compararCon(Elemento:elemento):int
+}
+interface Sistema{
++menuPrincipal():void
++desplegarPokemonRango():void
++desplegarPokemonOrdenAlfabetico():void
++desplegarPokemonDependiendoTipo():void
++desplegarPrimeraEvolucionesDecreciente():void
++busquedaPersonalizada():void
++busquedaPorNombre():void
++busquedaPorID():void
++reescribirTXT():void
+}
+class Pokedex{
++Pokedex()
+}
+interface lista{
++agregar(pokemon:pokemon):boolean
+}
+Pokedex ..|> Sistema : implementa
+listaNexoDoble *--> Pokedex
+listaNexoDoble *--* "0..1"NodoDoble : -cabeza:NodoDoble
+NodoDoble *--* NodoDoble : -nextNodoDoble
+NodoDoble *--* NodoDoble : -prevNodoDoble
+lista --* Sistema
+NodoDoble *--> elemento
+pokemon ..|> elemento
+pokemon --|> pokemonPrimeraEvolucion : hereda
+pokemon --|> pokemonSegundaEvolucion : hereda
+pokemon --|> pokemonBasico : hereda
+}
+}
+
+
+
+@enduml
